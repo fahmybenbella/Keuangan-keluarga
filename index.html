@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Keuangan Pribadi</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Template Keuangan Pribadi</h1>
+        <div class="instructions">
+            <p><strong>Petunjuk Penggunaan:</strong> Masukkan tanggal dan jumlah uang pada kolom yang tersedia. 
+            Sistem akan otomatis menghitung alokasi dana: Tabungan 50%, Belanja 15%, Sekolah 15%, Kesehatan 10%, Gaji 10%.</p>
+        </div>
+
+        <table id="financial-table">
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Jumlah Uang (Rp)</th>
+                    <th>Tabungan (50%)</th>
+                    <th>Belanja (15%)</th>
+                    <th>Sekolah (15%)</th>
+                    <th>Kesehatan (10%)</th>
+                    <th>Gaji (10%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="date" class="date-input"></td>
+                    <td><input type="number" class="amount-input" min="0" oninput="calculateAllocations(this)"></td>
+                    <td class="tabungan">0</td>
+                    <td class="belanja">0</td>
+                    <td class="sekolah">0</td>
+                    <td class="kesehatan">0</td>
+                    <td class="gaji">0</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Total</td>
+                    <td id="total-amount">0</td>
+                    <td id="total-tabungan">0</td>
+                    <td id="total-belanja">0</td>
+                    <td id="total-sekolah">0</td>
+                    <td id="total-kesehatan">0</td>
+                    <td id="total-gaji">0</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="buttons">
+            <button id="add-row" onclick="addNewRow()">Tambah Baris</button>
+            <button id="export-btn" onclick="exportToExcel()">Export ke Excel</button>
+            <button id="reset-btn" onclick="resetTable()">Reset Tabel</button>
+            <button id="whatsapp-btn" onclick="kirimWhatsApp()">Kirim WhatsApp</button>
+        </div>
+
+        <div class="summary">
+            <div class="summary-box">
+                <h3>Total Pemasukan</h3>
+                <div class="summary-value" id="summary-amount">Rp 0</div>
+            </div>
+            <div class="summary-box">
+                <h3>Total Tabungan</h3>
+                <div class="summary-value" id="summary-tabungan">Rp 0</div>
+            </div>
+            <div class="summary-box">
+                <h3>Total Belanja</h3>
+                <div class="summary-value" id="summary-belanja">Rp 0</div>
+            </div>
+            <div class="summary-box">
+                <h3>Total Sekolah</h3>
+                <div class="summary-value" id="summary-sekolah">Rp 0</div>
+            </div>
+            <div class="summary-box">
+                <h3>Total Kesehatan</h3>
+                <div class="summary-value" id="summary-kesehatan">Rp 0</div>
+            </div>
+            <div class="summary-box">
+                <h3>Total Gaji</h3>
+                <div class="summary-value" id="summary-gaji">Rp 0</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
